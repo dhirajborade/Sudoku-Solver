@@ -20,21 +20,18 @@ public final class SudokuSolver {
 	private static Set<Integer> getNumber(int[][] board, int row, int col) {
 		final Set<Integer> intsToAvoid = new HashSet<Integer>();
 
-		// check - row
 		for (int i = 0; i < board[0].length; i++) {
 			if (board[row][i] > 0) {
 				intsToAvoid.add(board[row][i]);
 			}
 		}
-
-		// check - col
+		
 		for (int i = 0; i < board.length; i++) {
 			if (board[i][col] > 0) {
 				intsToAvoid.add(board[i][col]);
 			}
 		}
 
-		// check - cube
 		int lowerRowIndex = (row / 3) * 3;
 		int lowerColumnIndex = (col / 3) * 3;
 
@@ -56,8 +53,6 @@ public final class SudokuSolver {
 	}
 
 	private static boolean solveSudoku(int[][] board, int row, int col) {
-		// traversing the matrix.. go to next row once all columns in current row are
-		// traversed.
 		if (col == board[0].length) {
 			row++;
 			if (row == board.length) {
@@ -80,13 +75,6 @@ public final class SudokuSolver {
 		return false;
 	}
 
-	/**
-	 * Expects an n * n matrix and returns true and prints sudoku solution for valid
-	 * input.
-	 * 
-	 * @param sudoku 	the n*n matrix to solve
-	 * @return 			true or false, true indicating the solution to solve.
-	 */
 	public static boolean solve(int[][] sudoku) {
 		return solveSudoku(sudoku, 0, 0);
 	}
